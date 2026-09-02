@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: agent-reach-wiki-gateway
+    runtime: docker
+    plan: free
+    dockerfilePath: ./deploy/agent-reach-gateway/Dockerfile
+    dockerContext: ./deploy/agent-reach-gateway
+    healthCheckPath: /health
+    autoDeploy: false
+    envVars:
+      - key: GATEWAY_TOKEN
+        generateValue: true
+      - key: AGENT_REACH_LANG
+        value: ko

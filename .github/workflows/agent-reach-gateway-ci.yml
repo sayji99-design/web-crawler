@@ -1,0 +1,33 @@
+name: Agent Reach Gateway CI
+
+on:
+  push:
+    branches:
+      - agent-reach-cloud-gateway
+    paths:
+      - 'deploy/agent-reach-gateway/**'
+      - 'render.yaml'
+      - '.github/workflows/agent-reach-gateway-ci.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'deploy/agent-reach-gateway/**'
+      - 'render.yaml'
+      - '.github/workflows/agent-reach-gateway-ci.yml'
+  workflow_dispatch:
+
+jobs:
+  build-and-doctor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build gateway image
+        run: docker build -t agent-reach-wiki-gateway deploy/agent-reach-gateway
+      - name: Verify Agent Reach CLI
+        run: docker run --rm agent-reach-wiki-gateway agent-reach --version
+      - name: Run Agent Reach doctor
+        run: docker run --rm agent-reach-wiki-gateway agent-reach doctor --json
+      - name: Verify API module imports
+        run: docker run --rm -e GATEWAY_TOKEN=test agent-reach-wiki-gateway python -c "import app; print(app.health())"

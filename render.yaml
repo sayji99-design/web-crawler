@@ -12,3 +12,5 @@ services:
         generateValue: true
       - key: AGENT_REACH_LANG
         value: ko
+      - key: PUBLIC_URL
+        value: https://agent-reach-wiki-gateway.onrender.com

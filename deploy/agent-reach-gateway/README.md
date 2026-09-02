@@ -18,6 +18,17 @@
 - `GET /health` : 공개 상태 확인
 - `GET /doctor` : Agent Reach doctor JSON (Bearer token 필요)
 - `POST /research` : 자연어/URL 기반 리서치 라우팅 (Bearer token 필요)
+- `POST /mcp` : ChatGPT Plugin용 Streamable HTTP MCP (OAuth/PKCE 인증)
+
+## ChatGPT 자동 호출 연결
+1. ChatGPT 설정에서 Developer mode를 켭니다.
+2. Plugins에서 새 연결을 만들고 MCP URL에
+   `https://agent-reach-wiki-gateway.onrender.com/mcp`를 입력합니다.
+3. 연결 승인 화면에서 Render의 `GATEWAY_TOKEN`을 한 번 입력합니다.
+4. 새 대화의 도구 메뉴에서 Agent Reach를 활성화합니다.
+
+도구 설명은 최신 외부 정보, 다중 출처, URL, GitHub, YouTube, RSS 조사가
+필요할 때 호출하고 단순 대화·창작·재작성에는 호출하지 않도록 설계되어 있습니다.
 
 ## 배포
 루트의 `render.yaml`은 Render Free Web Service용 Blueprint입니다. 무료 서비스는 유휴 시 sleep하며 다음 요청에서 다시 기동될 수 있습니다. 로컬 파일은 영구 저장소로 취급하지 않습니다.

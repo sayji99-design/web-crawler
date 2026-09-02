@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python -m pip install --upgrade pip setuptools wheel pipx \
     && python -m pip install \
       "agent-reach[all] @ https://github.com/Panniantong/Agent-Reach/archive/main.zip" \
-      fastapi "uvicorn[standard]"
+      fastapi "uvicorn[standard]" mcp python-multipart
 
 # User explicitly approved expanded cloud installation. Keep the build resilient:
 # if an upstream optional channel cannot install on a server image, runtime doctor

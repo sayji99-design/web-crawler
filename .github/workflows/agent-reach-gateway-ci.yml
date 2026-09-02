@@ -8,6 +8,13 @@ on:
       - 'deploy/agent-reach-gateway/**'
       - 'render.yaml'
       - '.github/workflows/agent-reach-gateway-ci.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'deploy/agent-reach-gateway/**'
+      - 'render.yaml'
+      - '.github/workflows/agent-reach-gateway-ci.yml'
   workflow_dispatch:
 
 jobs:
